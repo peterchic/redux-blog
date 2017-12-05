@@ -1,6 +1,8 @@
 import React, { Component} from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { createPost } from  '../actions'
 //reduxForm form is similar to connect. Allowing this componenet to talk directly to redux store
 
 
@@ -31,6 +33,7 @@ class PostsNew extends Component {
   onSubmit(values) {
     // this === component
     console.log(values);
+    this.props.createPost(values)
   }
 
   render() {
@@ -85,4 +88,6 @@ export default reduxForm({
   validate, // validate: 'validate'
   form: 'PostsNewForm'
   //form: => Name of the form. Can handle multiple forms. needs to be unique
-})(PostsNew)
+})(
+  connect(null, { createPost })(PostsNew)
+)

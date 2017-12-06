@@ -13,6 +13,7 @@ export default function(state = {}, action) {
     // return newState
 
     //ES6
+    return {...state, [action.payload.data.id]: action.payload.data}
 
     return { ...state, action.payload.data}
     case FETCH_POSTS:
